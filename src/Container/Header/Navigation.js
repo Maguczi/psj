@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Navigation = () => {
+const Navigation = props => {
   return (
     <nav>
       <ul>
-        <li>
-          <Link to="/tacos">Tacos</Link>
-        </li>
-        <li>
-          <Link to="/sandwiches">Sandwiches</Link>
-        </li>
+        {props.routes.map((route, i) => {
+          return (
+            <li key={i}>
+              <Link to={route.path}>{route.component}</Link>
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )

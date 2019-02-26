@@ -10,6 +10,10 @@ const routes = [
   {
     path: '/contact',
     component: 'Contact'
+  },
+  {
+    path: '/',
+    component: 'Home'
   }
 ]
 
