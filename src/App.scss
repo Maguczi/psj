@@ -1,0 +1,24 @@
+header {
+  text-align: center;
+}
+
+ul {
+  display: block;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid black;
+  margin: 0 0 20px;
+
+  li {
+    display: inline-block;
+    padding: 20px;
+    margin: 0;
+    list-style: none;
+
+    a {
+      color: red;
+      text-decoration: none;
+    }
+  }
+}
