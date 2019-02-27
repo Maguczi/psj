@@ -1,32 +1,47 @@
-import React, { Component, Fragment, Suspense } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Routes from './Routes'
+import React, { Fragment, Suspense, useState } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 import './App.scss'
+
+import { fetchRouters } from './Routers';
+import useEffectAsync from './useEffectAsync';
+
 import Header from './Container/Header/Header'
+const NotFound = React.lazy(() => import('./Components/NotFound/NotFound'));
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Router>
-          <Fragment>
-            <Header routes={Routes} />
+const app = () => {
+  const [routers, setRouters] = useState([]);
 
+  useEffectAsync(async () => {
+    const routers = await fetchRouters();
+    setRouters(routers);
+  }, []);
+
+  return (
+    <div className="App">
+      <Router>
+        <Fragment>
+          <Header routes={routers} />
+
+          <main>
             <Suspense fallback={<div>Loading...</div>}>
-              {Routes.map((route, i) => {
-                return (
-                  <Route
-                    key={i}
-                    {...route}
-                  />
-                )
-              })}
+              <Switch>
+                {routers.map((route, i) => {
+                  return (
+                    <Route
+                      key={i}
+                      {...route}
+                    />
+                  )
+                })}
+                <Route path="*" component={NotFound} />
+              </Switch>
             </Suspense>
-          </Fragment>
-        </Router>
-      </div>
-    )
-  }
+          </main>
+        </Fragment>
+      </Router>
+    </div>
+  )
 }
 
-export default App
+export default app
