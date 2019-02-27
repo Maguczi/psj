@@ -1,7 +1,7 @@
 import React from 'react'
 
 const magazine = () => {
-  return <div>news</div>
+  return <div>magazine</div>
 }
 
 export default magazine

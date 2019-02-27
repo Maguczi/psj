@@ -8,7 +8,7 @@ const Navigation = props => {
         {props.routes.map((route, i) => {
           return (
             <li key={i}>
-              <Link to={route.path}>{route.component}</Link>
+              <Link to={route.path}>{route.name}</Link>
             </li>
           )
         })}

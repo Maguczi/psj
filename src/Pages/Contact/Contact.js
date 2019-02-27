@@ -1,7 +1,7 @@
 import React from 'react'
 
 const contant = () => {
-  return <div>news</div>
+  return <div>contant</div>
 }
 
 export default contant

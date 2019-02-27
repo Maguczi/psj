@@ -1,13 +1,8 @@
-import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import React, { Component, Fragment, Suspense } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Routes from './Routes'
 import './App.scss'
 import Header from './Container/Header/Header'
-
-import Home from './Pages/Home/Home'
-import News from './Pages/News/News'
-import Magazine from './Pages/Magazine/Magazine'
-import Contact from './Pages/Contact/Contact'
 
 class App extends Component {
   render() {
@@ -16,11 +11,17 @@ class App extends Component {
         <Router>
           <Fragment>
             <Header routes={Routes} />
-            <div>
+
+            <Suspense fallback={<div>Loading...</div>}>
               {Routes.map((route, i) => {
-                return <div key={i}>adasd</div>
+                return (
+                  <Route
+                    key={i}
+                    {...route}
+                  />
+                )
               })}
-            </div>
+            </Suspense>
           </Fragment>
         </Router>
       </div>
