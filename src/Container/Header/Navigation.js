@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Navigation = props => {
+const navigation = props => {
+  console.log('Container %c"navigation"', 'color: #8EDAFF', 'loaded');
+
   return (
     <nav>
       <ul>
@@ -17,4 +19,4 @@ const Navigation = props => {
   )
 }
 
-export default Navigation
+export default navigation

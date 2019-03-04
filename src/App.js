@@ -8,8 +8,12 @@ import useEffectAsync from './useEffectAsync';
 
 import Header from './Container/Header/Header'
 const NotFound = React.lazy(() => import('./Components/NotFound/NotFound'));
+const Home = React.lazy(() => import('./Components/Home/Home'));
+
 
 const app = () => {
+  console.log('Component %c"app"', 'color: #FF5067', 'loaded');
+
   const [routers, setRouters] = useState([]);
 
   useEffectAsync(async () => {
@@ -34,6 +38,7 @@ const app = () => {
                     />
                   )
                 })}
+                <Route exact path="/" component={Home} />
                 <Route path="*" component={NotFound} />
               </Switch>
             </Suspense>
